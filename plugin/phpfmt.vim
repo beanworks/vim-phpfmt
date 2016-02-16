@@ -28,8 +28,6 @@ endif
 
 if !exists('g:phpfmt_tmp_dir')
     let g:phpfmt_tmp_dir = '/tmp/'
-else
-    let g:phpfmt_tmp_dir = fnamemodify(g:phpfmt_tmp_dir, ':p:h') . '/'
 endif
 
 command! -bar PhpFmt call phpfmt#fmt#format()
