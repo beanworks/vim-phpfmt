@@ -10,7 +10,6 @@ endif
 
 for s:feature in [
             \ 'autocmd',
-            \ 'system',
             \ 'reltime'
         \ ]
     if !has(s:feature)
@@ -20,19 +19,20 @@ for s:feature in [
 endfor
 
 if !exists('g:phpfmt_command')
-    call phpfmt#log#error('setting g:phpfmt_command is missing')
-    finish
+    let g:phpfmt_command = 'phpcbf'
 endif
 
 if !exists('g:phpfmt_options')
-    call phpfmt#log#error('setting g:phpfmt_options is missing')
-    finish
+    let g:phpfmt_options = ''
 endif
 
 if !exists('g:phpfmt_tmp_dir')
-    call phpfmt#log#error('setting g:phpfmt_tmp_dir is missing')
-    finish
+    let g:phpfmt_tmp_dir = '/tmp/'
+else
+    let g:phpfmt_tmp_dir = fnamemodify(g:phpfmt_tmp_dir, ':p:h') . '/'
 endif
+
+command! -bar PhpFmt call phpfmt#fmt#format()
 
 augroup phpfmt
     autocmd!
