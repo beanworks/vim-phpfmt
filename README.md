@@ -1,7 +1,7 @@
 # vim-phpfmt
 
 PHP auto format plugin for vim. It works seamlessly with phpcbf, and automatically
-formats currently editing php code when saving the changes with `:w` or `:x`.
+formats currently editing php file on save, or by manually running command `:PhpFmt`.
 
 ## Install
 
