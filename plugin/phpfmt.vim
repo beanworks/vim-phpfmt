@@ -23,7 +23,7 @@ if !exists('g:phpfmt_command')
 endif
 
 if !exists('g:phpfmt_options')
-    let g:phpfmt_options = ''
+    let g:phpfmt_options = '--encoding=utf-8'
 endif
 
 if !exists('g:phpfmt_tmp_dir')
@@ -32,7 +32,9 @@ endif
 
 command! -bar PhpFmt call phpfmt#fmt#format()
 
-augroup phpfmt
+augroup vim-phpfmt
     autocmd!
-    autocmd BufWritePre *.php call phpfmt#fmt#format()
+    if get(g:, "phpfmt_autosave", 1)
+        autocmd BufWritePre *.php call phpfmt#fmt#format()
+    endif
 augroup END
