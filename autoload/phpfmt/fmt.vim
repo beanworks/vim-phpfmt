@@ -20,12 +20,14 @@ function! phpfmt#fmt#format() abort "{{{
         let l:curw=winsaveview()
     endif
 
+    " Call vim's auto indent command
+    exe 'normal gg=G' | update
 
     " Write current unsaved buffer to a temp file
     if exists('g:phpfmt_tmp_dir')
         let l:tmpdir = g:phpfmt_tmp_dir . expand('%:h')
         if !isdirectory(l:tmpdir)
-            execute 'silent! !mkdir -p ' . shellescape(l:tmpdir, 1)
+            exe 'silent! !mkdir -p ' . shellescape(l:tmpdir, 1)
         endif
         let l:tmpname = g:phpfmt_tmp_dir . expand('%')
     else
@@ -44,7 +46,7 @@ function! phpfmt#fmt#format() abort "{{{
 
     " populate the final command with user based fmt options
     let command = g:phpfmt_command . ' ' . g:phpfmt_options
-    " execute our command...
+    " execute our system command...
     call system(command . ' ' . l:tmpname)
 
     " remove undo point caused via BufWritePre
