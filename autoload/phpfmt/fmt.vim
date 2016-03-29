@@ -20,9 +20,6 @@ function! phpfmt#fmt#format() abort "{{{
         let l:curw=winsaveview()
     endif
 
-    " Call vim's auto indent command
-    exe 'normal gg=G' | update
-
     " Write current unsaved buffer to a temp file
     if exists('g:phpfmt_tmp_dir')
         let l:tmpdir = g:phpfmt_tmp_dir . expand('%:h')
