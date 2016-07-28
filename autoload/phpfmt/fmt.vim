@@ -3,6 +3,12 @@ if exists('g:loaded_phpfmt_fmt_autoload') || !exists('g:loaded_phpfmt_plugin')
 endif
 let g:loaded_phpfmt_fmt_autoload = 1
 
+function! phpfmt#fmt#autoformat() abort "{{{
+    if get(g:, 'phpfmt_autosave', 1)
+        call phpfmt#fmt#format()
+    endif
+endfunction "}}}
+
 function! phpfmt#fmt#format() abort "{{{
     if g:phpfmt_experimental == 1
         " Using winsaveview to save/restore cursor state has the problem of

@@ -40,7 +40,5 @@ command! -bar PhpFmt call phpfmt#fmt#format()
 
 augroup vim-phpfmt
     autocmd!
-    if get(g:, "phpfmt_autosave", 1)
-        autocmd BufWritePre *.php call phpfmt#fmt#format()
-    endif
+    autocmd BufWritePre *.php call phpfmt#fmt#autoformat()
 augroup END
