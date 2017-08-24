@@ -56,7 +56,11 @@ function! phpfmt#fmt#format() abort "{{{
     try | silent undojoin | catch | endtry
     " reload buffer
     let old_fileformat = &fileformat
-    call rename(l:tmpname, expand('%'))
+    let formatted_content = readfile(l:tmpname)
+    " copy the content from formatted tempfile
+    call writefile(formatted_content, expand('%'))
+    " delete tempfile
+    call delete(l:tmpname)
     silent edit!
     let &fileformat = old_fileformat
     let &syntax = &syntax
