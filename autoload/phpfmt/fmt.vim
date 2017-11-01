@@ -34,7 +34,7 @@ function! phpfmt#fmt#format() abort "{{{
         endif
         let l:tmpname = g:phpfmt_tmp_dir . expand('%')
     else
-        let l:tmpname = tempname()
+        let l:tmpname = tempname() . '.' . expand('%:e')
     endif
     call writefile(getline(1, '$'), l:tmpname)
 
