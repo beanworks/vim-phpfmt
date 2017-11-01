@@ -27,9 +27,17 @@ if !exists('g:phpfmt_command')
 endif
 
 if !exists('g:phpfmt_standard')
-    let g:phpfmt_options = '--standard=PSR2 --encoding=utf-8'
+    let g:phpfmt_standard = 'PSR2'
 else
+    let phpmfm_standard_is_specified = 1
+endif
+
+if !exists('g:phpfmt_options')
     let g:phpfmt_options = '--standard=' . g:phpfmt_standard . ' --encoding=utf-8'
+else
+    if exists('phpmfm_standard_is_specified')
+        let g:phpfmt_options = '--standard=' . g:phpfmt_standard . ' ' . g:phpfmt_options
+    endif
 endif
 
 if !exists("g:phpfmt_experimental")
