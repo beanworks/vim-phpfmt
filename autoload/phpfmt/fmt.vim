@@ -10,6 +10,10 @@ function! phpfmt#fmt#autoformat() abort "{{{
 endfunction "}}}
 
 function! phpfmt#fmt#format() abort "{{{
+    if !filereadable(expand('%'))
+        return
+    endif
+
     if g:phpfmt_experimental == 1
         " Using winsaveview to save/restore cursor state has the problem of
         " closing folds on save. One fix is to use mkview instead. Unfortunately,
